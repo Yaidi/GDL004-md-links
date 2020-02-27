@@ -1,21 +1,20 @@
 const optionChoose = (option) => {
-    if (option == options['--stats']) {
-
-    } else if () {
-
-    } else if () {
-
+    if (option == options['--stats --validate']) {
+        statsValidate()
+    } else if ('--stats') {
+        stats()
+    } else if ('--validate') {
+        validate()
     } else {
         defect()
     }
-}
-return new Promise((resolve, reject) => {
-    if (err) {
-        reject(err);
-    } else {
-        resolve();
-    }
-})
+    return new Promise((resolve, reject) => {
+        if (err) {
+            reject(err);
+        } else {
+            resolve();
+        }
+    })
 }
 
 const stats = () => {
