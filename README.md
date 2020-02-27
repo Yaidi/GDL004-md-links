@@ -1,6 +1,8 @@
 # MARKDOWN
 
-## Preámbulo
+## Flujo
+![md-links](flujo.png)
+
 
 ## Resumen del proyecto
 
