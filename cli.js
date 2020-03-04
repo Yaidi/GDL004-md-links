@@ -2,7 +2,7 @@
  const process = require('process');
  const fileF = require('./file.js');
  const pathF = require('./path.js');
- const linksF = require('./links');
+ const linksF = require('./links.js');
  const options = require('./option.js');
  let pathFile = process.argv[2];
  let option = process.argv.slice(3, process.argv.length)
@@ -11,35 +11,33 @@
          if (err) {
              reject(err)
          } else {
-             resolve(pathFile)
+             resolve(console.log('hola'))
          }
 
      });
  }
- mdLinks()
 
- mdLinks
+ mdLinks()
      .then((pathFile) => {
-         validateFile(pathFile);
-         options.optionChoose(option)
+         fileF.validateFile(pathFile);
      })
      .catch((err) => {
          console.log(message.errFile);
      })
- fileF.validateFile
+ fileF.validateFile()
      .then((file) => {
          pathF.mdFile(file)
      }).catch((err) => {
          console.log(message.errMd);
      })
- pathF.mdFile
+ pathF.mdFile()
      .then((md) => {
          fileF.readFile(md)
      })
      .catch((err) => {
          console.log(message.errRead);
      });
- fileF.readFile
+ fileF.readFile()
      .then((content) => {
          linksF.links(content)
      })
@@ -47,10 +45,11 @@
          console.log(message.errL)
      });
 
- linksF.links
+ linksF.links()
      .then((linksArray) => {
-
+         options.optionChoose(option);
      })
      .catch((err) => {
+         console.log(message.errOption);
 
      })

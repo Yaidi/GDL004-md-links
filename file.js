@@ -11,13 +11,13 @@ const validateFile = (pathFile) => {
     });
 }
 
-function readFile() {
+const readFile = (md) => {
     return new Promise((resolve, reject) => {
         fs.readFile(pathFile, 'utf-8', (err, file) => {
             if (err) {
                 return console.log(errRead)
             }
-            return file
+            return console.log(file)
         })
     });
 };

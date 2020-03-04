@@ -23,9 +23,9 @@ const responseHttp = (links) => {
             });
     }
 }
-const links = () => {
+const links = (content) => {
     const regexLinks = /\[(.*?)\]\((.*?)\)/gm;
-    let linksArray = file.toString().match(regexLinks);
+    let linksArray = content.toString().match(regexLinks);
     return new Promise((resolve, reject) => {
         if (err) {
             reject(err)

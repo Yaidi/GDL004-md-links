@@ -23,7 +23,7 @@ const stats = () => {
 const validate = () => {
     // Ok or Fail
 }
-const defect = () =>
+const defect = () => {
     // Imprimir los links junto con un texto de que es el link
 }
 const statsValidate = () => {
