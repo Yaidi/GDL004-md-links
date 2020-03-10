@@ -13,17 +13,20 @@ const validateFile = (pathFile) => {
 }
 
 const readFile = (md) => {
-    fs.readFile(md, 'utf-8', (err, fileRead) => {
-        return new Promise((resolve, reject) => {
-            if (err) {
-                return reject(errRead)
-            } else {
-                console.log('hola');
-                return resolve(fileRead)
-            }
-        });
 
+    return new Promise((resolve, reject) => {
+        fs.readFile(md, 'utf-8', (err, fileRead) => {
+
+            if (err) {
+                reject(errRead)
+            } else {
+                resolve(fileRead)
+            }
+
+
+        });
     });
+
 };
 
 module.exports = {

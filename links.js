@@ -24,7 +24,6 @@ const responseHttp = (links) => {
     }
 }
 const links = (content) => {
-    console.log(content)
     const regexLinks = /\[(.*?)\]\((.*?)\)/gm;
     let linksArray = content.match(regexLinks);
     return linksArray
