@@ -1,14 +1,12 @@
 const path = require('path');
-const mdFile = () => {
+const { errMd } = require('./message.js')
+const mdFile = (pathFile) => {
     return new Promise((resolve, reject) => {
-        if (err) {
-            // Se imprime el error
-            reject(console.log(err))
-        }
         let ext = path.extname(pathFile)
         if (ext == '.md') {
-            resolve(pathFile)
+            return resolve(pathFile)
         }
+        return reject(console.log(errMd))
 
     })
 };

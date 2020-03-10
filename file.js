@@ -1,4 +1,5 @@
 const fs = require('fs');
+const { errRead } = require('./message.js');
 const validateFile = (pathFile) => {
     return new Promise((resolve, reject) => {
         fs.stat(pathFile, (err, file) => {
@@ -8,21 +9,24 @@ const validateFile = (pathFile) => {
                 resolve(file);
             }
         });
-    });
+    })
 }
 
 const readFile = (md) => {
-    return new Promise((resolve, reject) => {
-        fs.readFile(pathFile, 'utf-8', (err, file) => {
+    fs.readFile(md, 'utf-8', (err, fileRead) => {
+        return new Promise((resolve, reject) => {
             if (err) {
-                return console.log(errRead)
+                return reject(errRead)
+            } else {
+                console.log('hola');
+                return resolve(fileRead)
             }
-            return console.log(file)
-        })
+        });
+
     });
 };
 
 module.exports = {
     validateFile: validateFile,
-    readFile: readFile
+    readFile: readFile,
 }

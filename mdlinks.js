@@ -1,11 +1,18 @@
-import { errVal } from './message.js';
-export const mdLinks = (path, option) => {
-    let promiseMd = new Promise((resolve, reject) => {
+const m = require('./message.js');
+const f = require('./file');
+module.exports = mdLinks = (path, option) => {
+    return new Promise((resolve, reject) => {
         if (!path) {
-            reject(console.log(errVal))
-        } else {
-            resolve(mdFile(path))
+            reject(console.log(m.errVal));
         }
-        // revisar, validate True or False
+        f.validateFile(pathFile)
+            .then((res) => {
+                console.log(res);
+                console.log('hola');
+            })
+            .catch((err) => {
+                console.log(err)
+            })
+            // revisar, validate True or False
     });
 }

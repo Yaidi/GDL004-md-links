@@ -1,4 +1,5 @@
 const fetch = require('node-fetch');
+const { errL } = require('./message.js');
 const failOk = () => {
 
 }
@@ -17,22 +18,16 @@ const responseHttp = (links) => {
                 okCounter++
             })
             .then(links => {
-                console.log(links);
                 //para contar
                 failCounter++
             });
     }
 }
 const links = (content) => {
+    console.log(content)
     const regexLinks = /\[(.*?)\]\((.*?)\)/gm;
-    let linksArray = content.toString().match(regexLinks);
-    return new Promise((resolve, reject) => {
-        if (err) {
-            reject(err)
-        } else {
-            resolve(console.log(linksArray))
-        }
-    });
+    let linksArray = content.match(regexLinks);
+    return linksArray
 }
 module.exports = {
     links: links,
