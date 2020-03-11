@@ -16,14 +16,11 @@ const readFile = (md) => {
 
     return new Promise((resolve, reject) => {
         fs.readFile(md, 'utf-8', (err, fileRead) => {
-
             if (err) {
                 reject(errRead)
             } else {
                 resolve(fileRead)
             }
-
-
         });
     });
 

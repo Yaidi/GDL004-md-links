@@ -1,11 +1,20 @@
 const fetch = require('node-fetch');
 const { errL } = require('./message.js');
-const failOk = () => {
-
+const objLinks = (linksArray) => {
+    const regexText = /\[(.*?)\]/gm;
+    const regexLinks = /\((.*?)\)/gm;
+    for (let i = 0; i < linksArray.length; i++) {
+        const obj = {
+            links: linksArray[i].match(regexLinks),
+            text: linksArray[i].match(regexText),
+        }
+        console.log(obj)
+    }
 }
-const val = () => {
+const counters = (links, ) => {
     let okCounter = 0;
     let failCounter = 0;
+    let unique = 0;
 
 }
 const responseHttp = (links) => {
@@ -24,11 +33,15 @@ const responseHttp = (links) => {
     }
 }
 const links = (content) => {
-    const regexLinks = /\[(.*?)\]\((.*?)\)/gm;
-    let linksArray = content.match(regexLinks);
+    const regexLinksAndText = /\[(.*?)\]\((.*?)\)/gm;
+
+    let linksArray = content.match(regexLinksAndText);
+    objLinks(linksArray)
     return linksArray
+
 }
 module.exports = {
     links: links,
     http: responseHttp,
+    counters: counters,
 }
