@@ -1,0 +1,24 @@
+const err = require('./message.js');
+module.exports = links = (content) => {
+    return new Promise((resolve, reject) => {
+        if (!content) {
+            return reject(err.errL);
+
+        }
+        const regexLinksAndText = /\[(.*?)\]\((.*?)\)/gm;
+        let linksArray = content.match(regexLinksAndText);
+        let obj = {};
+        let array = [];
+        const regexText = /\[(.*?)\]/gm;
+        const regexLinks = /\((.*?)\)/gm;
+
+        for (let i = 0; i < linksArray.length; i++) {
+            obj = {
+                link: linksArray[i].match(regexLinks)[0].replace('(', '').replace(')', ''),
+                text: linksArray[i].match(regexText)[0].replace('[', '').replace(']', ''),
+            }
+        }
+        return resolve(obj)
+    });
+
+}
