@@ -6,20 +6,24 @@ const counters = (links) => {
     let unique = 0;
 
 }
-const responseHttp = (obj) => {
+const responseHttp = (array) => {
 
-    /* obj.forEach(element => {
-         fetch(element.link)
-             .then(res => {
-                 res.text();
-                 console.log(res);
+    array.forEach(element => {
+        fetch(element.link)
+            .then(res => {
+                res.text();
+                console.log(res);
 
-             })
-             .then(res => {
-                 console.log(res);
+            })
+            .then(res => {
+                console.log(res);
 
-             });
-     });*/
+            })
+            .catch((err) => {
+                console.log(err);
+
+            })
+    });
 
 }
 module.exports = {

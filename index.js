@@ -9,16 +9,16 @@ module.exports = mdLinks = (pathFile, option) => {
         })
         .then((res) => {
             return links(res)
-        }).then((obj) => {
+        }).then((array) => {
 
             if (option.includes('--validate --stats')) {
-                linksF.http(obj);
+                linksF.http(array);
 
             } else if (option.includes('--stats')) {
                 console.log('soy stats');
 
             } else if (option.includes('--validate')) {
-                linksF.http(obj);
+                linksF.http(array);
 
             } else if (option.includes('1')) {
                 console.log('aaa');
