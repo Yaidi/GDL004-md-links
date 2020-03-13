@@ -309,6 +309,7 @@ si tienes dudas existenciales con respecto a estas decisiones. No existe una
 ### General
 
 - [ ] Puede instalarse via `npm install --global <github-user>/md-links`
+[Repositorio de Git hub](https://github.com/katrosa)
 
 ### `README.md`
 
