@@ -13,7 +13,6 @@ const validateFile = (pathFile) => {
 }
 
 const readFile = (md) => {
-
     return new Promise((resolve, reject) => {
         fs.readFile(md, 'utf-8', (err, fileRead) => {
             if (err) {

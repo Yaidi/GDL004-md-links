@@ -17,7 +17,9 @@ module.exports = links = (content) => {
                 link: linksArray[i].match(regexLinks)[0].replace('(', '').replace(')', ''),
                 text: linksArray[i].match(regexText)[0].replace('[', '').replace(']', ''),
             }
+
             array.push(obj)
+
         }
         return resolve(array)
     });

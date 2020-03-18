@@ -3,26 +3,25 @@ const fetch = require('node-fetch');
 const counters = (links) => {
     let okCounter = 0;
     let failCounter = 0;
-    let unique = 0;
-
+    let uniqueCounter = 0;
 }
 const responseHttp = (array) => {
-
     array.forEach(element => {
         fetch(element.link)
             .then(res => {
-                res.text();
-                console.log(res);
-
-            })
-            .then(res => {
-                console.log(res);
-
+                element.status = res.status;
+                element.statusText = res.statusText;
             })
             .catch((err) => {
-                console.log(err);
-
+                if (err.errno) {
+                    const obj = {
+                        link: err.message,
+                        statusText: 'FAIL',
+                    }
+                    array.push(obj)
+                }
             })
+
     });
 
 }
