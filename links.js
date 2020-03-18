@@ -6,23 +6,25 @@ const counters = (links) => {
     let uniqueCounter = 0;
 }
 const responseHttp = (array) => {
-    array.forEach(element => {
-        fetch(element.link)
-            .then(res => {
-                element.status = res.status;
-                element.statusText = res.statusText;
-            })
-            .catch((err) => {
-                if (err.errno) {
-                    const obj = {
-                        link: err.message,
-                        statusText: 'FAIL',
-                    }
-                    array.push(obj)
-                }
-            })
+    let arrayPromises = array.map(async(obj) => {
+        let response;
+        try {
+            response = await fetch(obj.link);
+            response = {
+                ...obj,
+                statusText: 'OK',
+            }
+        } catch (error) {
+            response = {
+                ...obj,
+                statusText: 'FAIL',
+
+            }
+        }
+        return response
 
     });
+    return Promise.all(arrayPromises)
 
 }
 module.exports = {

@@ -1,6 +1,7 @@
 const fileF = require('./file.js');
 const pathF = require('./path.js');
 const linksF = require('./links.js');
+const options = require('./option.js');
 const links = require('./obj.js');
 module.exports = mdLinks = (pathFile, option) => {
 
@@ -11,16 +12,27 @@ module.exports = mdLinks = (pathFile, option) => {
         .then((res) => {
             return links(res)
         }).then((array) => {
-            if (option == '--validate -stats') {
-                linksF.http(array);
-            } else if (option.includes('--stats')) {
-                console.log('soy stats');
+            let choose = options(option);
+            console.log(choose);
 
-            } else if (option == '--validate') {
+            if (choose.stats && choose.validate) {
+                console.log('stats y validate');
                 linksF.http(array);
-                console.log(array);
-            } else if (option != '--validate' && option != '--stats') {
-                console.log('aaa');
+            } else if (choose.stats) {
+                console.log('entré stats');
+
+            } else if (choose.validate) {
+                linksF.http(array)
+                    .then((res) => {
+                        console.log(res);
+
+                    })
+                    .catch((err) => {
+                        console.log(err);
+
+                    })
+            } else if (!choose.stats && !choose.validate) {
+                console.log('no hay ni validate ni stats');
 
             } else {
                 console.error('comando no encontrado')
