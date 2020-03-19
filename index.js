@@ -2,7 +2,7 @@ const fileF = require('./file.js');
 const pathF = require('./path.js');
 const linksF = require('./links.js');
 const options = require('./option.js');
-const links = require('./obj.js');
+const objLinks = require('./obj.js');
 const err = require('./message.js');
 const { help } = require('./message.js');
 module.exports = mdLinks = (pathFile, option) => {
@@ -14,7 +14,7 @@ module.exports = mdLinks = (pathFile, option) => {
             return fileF.readFile(res)
         })
         .then((res) => {
-            return links(res)
+            return objLinks(res, pathFile)
         }).then((array) => {
             let choose = options(option);
 
@@ -26,19 +26,16 @@ module.exports = mdLinks = (pathFile, option) => {
                 linksF.http(array)
                     .then((res) => {
                         console.log(res);
+                    })
 
-                    })
-                    .catch((err) => {
-                        console.error(err);
-                    })
             } else if (option == '-v') {
                 console.log('Version 1.0')
             } else if (option == '-h' || option == 'help') {
                 console.log(help);
-            } else if (option == undefined) {
-                console.log('no hay ni validate ni stats');
+            } else if (option == '') {
+
             } else {
-                console.log('comando no encontrado');
+                console.error(err.errCommand);
             }
         }).catch((err) => {
             console.error(err)

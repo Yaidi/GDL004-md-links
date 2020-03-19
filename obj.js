@@ -1,5 +1,5 @@
 const err = require('./message.js');
-module.exports = links = (content) => {
+module.exports = obj = (content, path) => {
     return new Promise((resolve, reject) => {
         if (!content) {
             return reject(err.errL);
@@ -14,6 +14,7 @@ module.exports = links = (content) => {
 
         for (let i = 0; i < linksArray.length; i++) {
             obj = {
+                path: path,
                 link: linksArray[i].match(regexLinks)[0].replace('(', '').replace(')', ''),
                 text: linksArray[i].match(regexText)[0].replace('[', '').replace(']', ''),
             }
