@@ -6,6 +6,7 @@ const options = require('./option.js');
 const objLinks = require('./obj.js');
 const err = require('./message.js');
 const { help } = require('./message.js');
+
 module.exports = mdLinks = (pathFile, option) => {
     if (pathFile == undefined) {
         return console.log(err.errPath);
@@ -16,18 +17,20 @@ module.exports = mdLinks = (pathFile, option) => {
         })
         .then((res) => {
             return objLinks(res, pathFile)
-        }).then((array) => {
+        }).then((objLinks) => {
             let choose = options(option);
 
             if (choose.stats && choose.validate) {
-                linksF.http(array)
+                linksF.http(objLinks)
                     .then((res) => {
-
+                        let counter = linksF.counters(res);
+                        f.statsValidate(counter)
                     })
             } else if (choose.stats) {
-
+                let counter = linksF.counters(objLinks);
+                f.statsValidate(counter)
             } else if (choose.validate) {
-                linksF.http(array)
+                linksF.http(objLinks)
                     .then((res) => {
                         f.validate(res);
                     })
@@ -36,7 +39,7 @@ module.exports = mdLinks = (pathFile, option) => {
             } else if (option == '-h' || option == 'help') {
                 console.log(help);
             } else if (option == '') {
-
+                f.defect(objLinks)
             } else {
                 console.error(err.errCommand);
             }
