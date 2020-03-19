@@ -3,10 +3,14 @@ module.exports = route = (option) => {
         validate: false,
         stats: false
     }
-    if (option.indexOf('--validate') != -1) {
+    if (option == undefined) {
+        return options
+    }
+
+    if (option.includes('--validate')) {
         options.validate = true;
     }
-    if (option.indexOf('--stats') != -1) {
+    if (option.includes('--stats')) {
         options.stats = true;
     }
     return options
