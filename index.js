@@ -10,11 +10,17 @@ const { help } = require('./message.js');
 module.exports = mdLinks = (pathFile, option) => {
     if (pathFile == undefined) {
         return console.log(err.errPath);
+    } else if (fileF.validatePath(pathFile)) {
+        fileF.dirFiles(pathFile)
+            .then((arrayFiles) => {
+                return arrayFiles
+            }).catch((err) => {
+                console.error(err);
+            })
     }
-    pathF.mdFile(pathFile)
-        .then((res) => {
-            return fileF.readFile(res)
-        })
+    console.log(pathF.mdFile(pathFile) == err.errMd)
+    if (pathF.mdFile(pathFile))
+        fileF.readFile(pathFile)
         .then((res) => {
             return objLinks(res, pathFile)
         }).then((objLinks) => {
@@ -46,5 +52,4 @@ module.exports = mdLinks = (pathFile, option) => {
         }).catch((err) => {
             console.error(err)
         })
-
 }

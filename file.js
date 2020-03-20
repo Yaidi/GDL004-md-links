@@ -1,15 +1,8 @@
 const fs = require('fs');
 const { errRead } = require('./message.js');
-const validateFile = (pathFile) => {
-    return new Promise((resolve, reject) => {
-        fs.stat(pathFile, (err, file) => {
-            if (err) {
-                reject(err);
-            } else {
-                resolve(file);
-            }
-        });
-    })
+
+const validatePath = (pathFile) => {
+    return state = fs.statSync(pathFile).isDirectory;
 }
 
 const readFile = (md) => {
@@ -25,7 +18,18 @@ const readFile = (md) => {
 
 };
 
+const dirFiles = (path) => {
+    return new Promise((resolve, reject) => {
+        fs.readdir(path, 'utf-8', (err, files) => {
+            if (err) { return reject(err) };
+            return resolve(files)
+        })
+    });
+
+}
+
 module.exports = {
-    validateFile: validateFile,
-    readFile: readFile,
+    validatePath,
+    readFile,
+    dirFiles,
 }
