@@ -1,7 +1,10 @@
 module.exports = route = (option) => {
     const options = {
         validate: false,
-        stats: false
+        stats: false,
+        help: false,
+        version: false,
+        author: false,
     }
     if (option == undefined) {
         return options

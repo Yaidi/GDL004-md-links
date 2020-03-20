@@ -1,9 +1,8 @@
-const err = require('./message.js');
+const { errL } = require('./message.js');
 module.exports = obj = (content, path) => {
     return new Promise((resolve, reject) => {
         if (!content) {
-            return reject(err.errL);
-
+            return reject(errL);
         }
         const regexLinksAndText = /\[(.*?)\]\((.*?)\)/gm;
         let linksArray = content.match(regexLinksAndText);
