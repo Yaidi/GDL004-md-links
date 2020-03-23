@@ -1,4 +1,5 @@
 const errMd = 'No es una extension válida';
+const errMdFiles = 'Alguno de los archivos, no es md';
 const errL = 'No hay links que evaluar';
 const errFile = 'No es un archivo';
 const errDir = 'No es un directorio';
@@ -15,6 +16,7 @@ const help = `-v ver la versión actual
 const repository = 'Repository: https://github.com/Yaidi/GDL004-md-links/tree/master';
 module.exports = {
     errMd,
+    errMdFiles,
     errL,
     errFile,
     errRead,

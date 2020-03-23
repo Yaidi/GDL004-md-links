@@ -1,29 +1,28 @@
-const { validatePath, dirFiles, readFile } = require('./file.js');
+const { validatePath, readFile } = require('./file.js');
 const { mdFile } = require('./path.js');
-const { counters, http } = require('./links.js');
 const { statsValidate, stats, validate, defect } = require('./show.js');
 const { help, repository, errMd, errMdFiles, errCommand, errPath } = require('./message.js');
+const http = require('./http.js');
+const counters = require('./counters.js');
 const options = require('./option.js');
 const objLinks = require('./obj.js');
 const directory = require('./directory.js');
 
-function mdLinks(pathFile, option) {
+module.exports = mdLinks = (pathFile, option) => {
     if (pathFile == undefined) {
         return console.log(errPath);
     }
-
     directory(pathFile, validatePath(pathFile))
         .then((path) => {
             path.forEach(async(path) => {
+                console.log('el archivo entró');
                 let md = await mdFile(path);
                 if (md == errMd || md == errMdFiles) {
-                    console.log(md, 'entré aquí');
-                    return md
+                    return console.log(md)
                 }
-                readFile(path)
+                readFile(pathFile + '/' + path)
                     .then((res) => {
-                        console.log('leer');
-                        return objLinks(res, pathFile)
+                        return objLinks(res, path)
                     }).then((objLinks) => {
                         let choose = options(option);
 
@@ -35,7 +34,7 @@ function mdLinks(pathFile, option) {
                                 })
                         } else if (choose.stats) {
                             let counter = counters(objLinks);
-                            stats(counter)
+                            stats(counter, objLinks)
                         } else if (choose.validate) {
                             http(objLinks)
                                 .then((res) => {
@@ -60,6 +59,4 @@ function mdLinks(pathFile, option) {
                     })
             })
         })
-
 }
-module.exports = mdLinks;

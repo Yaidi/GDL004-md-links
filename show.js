@@ -3,11 +3,16 @@ const validate = (objLinks) => {
         console.log(link.path, link.link, link.statusText, link.text)
     });
 }
-const stats = (counter) => {
-    console.log('Total: ' + counter.Total, 'Unique: ' + counter.Unique);
+const stats = (counter, objLinks) => {
+    console.log(`
+    Total: ${counter.Total}
+    Unique: ${counter.Unique}`)
 }
-const statsValidate = (counter) => {
-    console.log('Total: ' + counter.Total, 'Unique: ' + counter.Unique, 'Broken: ' + counter.Broken)
+const statsValidate = (counter, objLinks) => {
+    console.log(`
+Total: ${counter.Total}
+Unique: ${counter.Unique}
+Broken:  ${counter.Broken}`)
 
 }
 const defect = (objLinks) => {
