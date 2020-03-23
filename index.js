@@ -13,14 +13,17 @@ module.exports = mdLinks = (pathFile, option) => {
         return console.log(errPath);
     }
     directory(pathFile, validatePath(pathFile))
-        .then((path) => {
-            path.forEach(async(path) => {
-                console.log('el archivo entró');
-                let md = await mdFile(path);
+        .then((paths) => {
+            paths.forEach(async(path) => {
+                let md = await mdFile(path, paths);
                 if (md == errMd || md == errMdFiles) {
                     return console.log(md)
                 }
-                readFile(pathFile + '/' + path)
+
+                if (paths.length > 1) {
+                    path = pathFile + '/' + path
+                }
+                readFile(path)
                     .then((res) => {
                         return objLinks(res, path)
                     }).then((objLinks) => {

@@ -8,7 +8,7 @@ module.exports = (pathFile, boleano) => {
                     resolve(pathFile)
                 })
         } else if (!boleano) {
-            Promise.resolve([pathFile])
+            resolve([pathFile])
         } else {
             reject();
         }
