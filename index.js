@@ -17,18 +17,16 @@ module.exports = mdLinks = (pathFile, option) => {
             paths.forEach(async(path) => {
                 let md = await mdFile(path, paths);
                 if (md == errMd || md == errMdFiles) {
-                    return console.log(md)
+                    return resolve(md)
                 }
-
                 if (paths.length > 1) {
-                    path = pathFile + '/' + path
+                    path = pathFile + '/' + path;
                 }
                 readFile(path)
                     .then((res) => {
                         return objLinks(res, path)
                     }).then((objLinks) => {
                         let choose = options(option);
-
                         if (choose.stats && choose.validate) {
                             http(objLinks)
                                 .then((res) => {
@@ -38,28 +36,31 @@ module.exports = mdLinks = (pathFile, option) => {
                         } else if (choose.stats) {
                             let counter = counters(objLinks);
                             stats(counter, objLinks)
+
                         } else if (choose.validate) {
                             http(objLinks)
                                 .then((res) => {
                                     validate(res);
+
                                 })
                         } else if (option == '-v') {
                             console.log('Version 1.0.0')
                         } else if (option == '-h' || option == 'help') {
                             console.log(help);
                         } else if (option == '') {
-                            defect(objLinks)
+                            console.log(defect(objLinks))
                         } else if (option == '-a' || option == 'author') {
                             console.log('Yaidi Garcia');
                         } else if (option == '-repo' || option == 'repository') {
                             console.log(repository);
                         } else {
-                            console.error(errCommand);
+                            console.log(errCommand);
                             console.log(help);
                         }
                     }).catch((err) => {
-                        console.error(err)
+                        reject(err)
                     })
             })
         })
+
 }

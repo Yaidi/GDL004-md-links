@@ -5,13 +5,12 @@ module.exports = (obj) => {
     let uniqueCounter = uniqBy(obj, 'link').length;
     let totalCounter = 0;
 
-
     obj.forEach((link) => {
 
         if (link.statusText == 'OK') {
             okCounter++
         }
-        if (link.statusText == 'FAIL') {
+        if (link.statusText == 'FAIL' || link.statusText == 'Not Found') {
             failCounter++
         }
         totalCounter++
