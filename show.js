@@ -1,7 +1,7 @@
 const { red, green, yellow, blue, magenta, gray, bgRed, bgGreen } = require('chalk');
 
-const validate = (objLinks) => {
-    objLinks.forEach(link => {
+const validate = (arrayObjs) => {
+    arrayObjs.forEach(link => {
         console.log(
             yellow(link.path),
             blue(link.link),
@@ -10,12 +10,12 @@ const validate = (objLinks) => {
             link.status);
     });
 }
-const stats = (counter, objLinks) => {
+const stats = (counter, arrayObjs) => {
     console.log(`
     Total: ${counter.Total}
     Unique: ${counter.Unique}`)
 }
-const statsValidate = (counter, objLinks) => {
+const statsValidate = (counter, arrayObjs) => {
     console.log(`
 Total: ${counter.Total}
 Unique: ${counter.Unique}
@@ -23,8 +23,8 @@ Broken:  ${counter.Broken}
 Ok: ${counter.Ok}`)
 
 }
-const defect = (objLinks) => {
-    objLinks.forEach(link => {
+const defect = (arrayObjs) => {
+    arrayObjs.forEach(link => {
         console.log(
             link.path,
             link.link,

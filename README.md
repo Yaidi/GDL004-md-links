@@ -1,7 +1,7 @@
 # MARKDOWN
 
 ## Flujo
-![md-links](flujo.png)
+![md-links](images/flujo.png)
 [Repositorio de Git hub](https://github.com/katrosa)
 ## Resumen del proyecto
 
