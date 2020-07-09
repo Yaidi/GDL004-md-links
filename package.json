@@ -1,42 +1,42 @@
 {
-    "name": "yaimdlinks",
-    "version": "2.2.5",
-    "description": " verificar link sirve o no",
-    "main": "index.js",
-    "scripts": {
-        "test": "echo \"Error: no test specified\" && exit 1"
-    },
-    "bin": {
-        "mdlinks": "./cli.js",
-        "validate-md": "./index.js"
-    },
-    "keywords": [
-        "markdown",
-        "md",
-        "link"
-    ],
-    "repository": {
-        "type": "git",
-        "url": "yaidi"
-    },
-    "author": "yaidi",
-    "license": "ISC",
-    "devDependencies": {
-        "babel-cli": "^6.26.0",
-        "babel-core": "^6.26.3",
-        "babel-install": "2.1.0",
-        "eslint": "^6.8.0"
-    },
-    "dependencies": {
-        "chalk": "^3.0.0",
-        "editorconfig": "^0.15.3",
-        "esm": "^3.2.25",
-        "jest": "^25.2.3",
-        "jscs": "^3.0.7",
-        "lodash": "^4.17.15",
-        "node-fetch": "^2.6.0"
-    },
-    "directories": {
-        "test": "test"
-    }
+  "name": "yaimdlinks",
+  "version": "2.3.1",
+  "description": " verificar link sirve o no",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "bin": {
+    "mdlinks": "./cli.js",
+    "validate-md": "./index.js"
+  },
+  "keywords": [
+    "markdown",
+    "md",
+    "link"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "yaidi"
+  },
+  "author": "yaidi",
+  "license": "ISC",
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-core": "^6.26.3",
+    "babel-install": "2.1.0",
+    "eslint": "^6.8.0"
+  },
+  "dependencies": {
+    "chalk": "^3.0.0",
+    "editorconfig": "^0.15.3",
+    "esm": "^3.2.25",
+    "jest": "^25.2.3",
+    "jscs": "^3.0.7",
+    "lodash": "^4.17.15",
+    "node-fetch": "^2.6.0"
+  },
+  "directories": {
+    "test": "test"
+  }
 }

@@ -1,4 +1,3 @@
-const process = require('process');
 const mdLinks = require('./index.js');
 const { red } = require('chalk');
 
