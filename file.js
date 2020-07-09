@@ -2,14 +2,22 @@ const fs = require('fs');
 const { errRead, errDir } = require('./message.js');
 
 const validatePath = (pathFile) => {
-    return fs.statSync(pathFile).isDirectory();
+    let response;
+    try{
+        return response = fs.statSync(pathFile).isDirectory();
+    }
+    catch (error){
+       if(error){
+        return  response = 'Exist';
+       }
+    }
 }
 
 const readFile = (md) => {
     return new Promise((resolve, reject) => {
         fs.readFile(md, 'utf-8', (err, fileRead) => {
             if (err) {
-                reject(err, errRead)
+                reject(errRead)
             } else {
                 resolve(fileRead)
             }

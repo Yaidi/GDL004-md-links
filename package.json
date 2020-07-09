@@ -1,11 +1,20 @@
 {
     "name": "yaimdlinks",
-    "version": "2.1.0",
+    "version": "2.2.5",
     "description": " verificar link sirve o no",
     "main": "index.js",
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1"
     },
+    "bin": {
+        "mdlinks": "./cli.js",
+        "validate-md": "./index.js"
+    },
+    "keywords": [
+        "markdown",
+        "md",
+        "link"
+    ],
     "repository": {
         "type": "git",
         "url": "yaidi"

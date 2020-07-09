@@ -10,14 +10,15 @@ const directory = require('./directory.js');
 
 module.exports = mdLinks = (pathFile, option) => {
     if (pathFile == undefined) {
-        return console.log(errPath);
+        return Promise.reject(errPath);
     }
-    directory(pathFile, validatePath(pathFile))
+    return new Promise((resolve, reject) => {
+        directory(pathFile, validatePath(pathFile))
         .then((paths) => {
             paths.forEach(async(path) => {
                 let md = await mdFile(path, paths);
                 if (md == errMd || md == errMdFiles) {
-                    return resolve(md)
+                    return reject(md)
                 }
                 if (paths.length > 1) {
                     path = pathFile + '/' + path;
@@ -31,36 +32,34 @@ module.exports = mdLinks = (pathFile, option) => {
                             http(objLinks)
                                 .then((res) => {
                                     let counter = counters(res);
-                                    statsValidate(counter)
+                                    resolve(statsValidate(counter, paths)) 
                                 })
                         } else if (choose.stats) {
                             let counter = counters(objLinks);
-                            stats(counter, objLinks)
+                            resolve(stats(counter, paths))
 
                         } else if (choose.validate) {
                             http(objLinks)
                                 .then((res) => {
-                                    validate(res);
-
+                                    resolve(validate(res))
                                 })
-                        } else if (option == '-v') {
-                            console.log('Version 1.0.0')
+                        }else if (option == '') {
+                            resolve(defect(objLinks));
+                        } 
+                        else if (option == '-v') {
+                            resolve('Version 2.2.6')
                         } else if (option == '-h' || option == 'help') {
-                            console.log(help);
-                        } else if (option == '') {
-                            console.log(defect(objLinks))
+                            resolve(help);
                         } else if (option == '-a' || option == 'author') {
-                            console.log('Yaidi Garcia');
+                            resolve('Yaidi Garcia');
                         } else if (option == '-repo' || option == 'repository') {
-                            console.log(repository);
-                        } else {
-                            console.log(errCommand);
-                            console.log(help);
+                             resolve(repository);
                         }
-                    }).catch((err) => {
-                        reject(err)
+                         else {
+                            reject(errCommand);
+                        }
                     })
             })
-        })
-
+        }).catch((err) => reject(err))
+    })
 }

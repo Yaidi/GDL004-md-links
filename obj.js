@@ -4,7 +4,7 @@ module.exports = obj = (content, path) => {
         if (!content) {
             return reject(errL);
         }
-        const regexLinksAndText = /\[(.*?)\]\((.*?)\)/gm;
+        const regexLinksAndText = /\[(.*)\](\(https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&\/\/=]*)\))/gm;
         let linksArray = content.match(regexLinksAndText);
         let obj = {};
         let array = [];

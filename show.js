@@ -1,35 +1,50 @@
-const { red, green, yellow, blue, magenta, gray, bgRed, bgGreen } = require('chalk');
+const { green, yellow, blue, magenta, gray, red} = require('chalk');
 
+const evaluate =(condition, text, add)=> condition ? green(text, add) : red(text, add);
+const textOk = (evaluate)=> evaluate === 'OK';
 const validate = (arrayObjs) => {
+    let res = []
     arrayObjs.forEach(link => {
-        console.log(
-            yellow(link.path),
-            blue(link.link),
-            magenta(link.text),
-            link.statusText,
-            link.status);
+        res += [ yellow(link.path) + ' ' +
+            blue(link.link) + ' ' +
+            magenta(link.text) + ' ' +
+            evaluate( textOk(link.statusText), link.statusText, link.status) + '\n']
+           
     });
+    return res
 }
-const stats = (counter, arrayObjs) => {
-    console.log(`
-    Total: ${counter.Total}
-    Unique: ${counter.Unique}`)
+const stats = (counter, path) => {
+   let res = [];
+   for(let i=0; i < path.length ; i++){
+    res += [ '\n' +
+    yellow('Path: ') + path[i] + '\n' +
+     'Total: ' + counter.Total + '\n'
+     + 'Unique: ' + counter.Unique + '\n' ]
+   }
+    return res
 }
-const statsValidate = (counter, arrayObjs) => {
-    console.log(`
-Total: ${counter.Total}
-Unique: ${counter.Unique}
-Broken:  ${counter.Broken}
-Ok: ${counter.Ok}`)
-
+const statsValidate = (counter, path) => {
+    let res = []
+    for(let i=0; i < path.length; i++){
+        res +=  [ '\n' +
+            yellow('Path: ') + path[i] + '\n' +
+            magenta('Total: ' + counter.Total) + '\n' +
+            gray('Unique: ' + counter.Unique) + '\n' +
+            red('Broken: ' + counter.Broken) + '\n' +
+            green('OK: ' + counter.Ok) +'\n'
+            ]
+    }
+    
+ return res
 }
 const defect = (arrayObjs) => {
-    arrayObjs.forEach(link => {
-        console.log(
-            link.path,
-            link.link,
-            link.text)
-    });
+    let res= [];
+    arrayObjs.forEach((link) => {
+     res += [yellow(link.path) + ' '+
+             blue(link.link) + ' ' +
+             magenta(link.text) + '\n']
+    })
+    return res;
 }
 module.exports = {
     validate,

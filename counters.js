@@ -1,5 +1,6 @@
 const { uniqBy } = require('lodash');
 module.exports = (arrayObjs) => {
+    let arrayCounter = new Array;
     let okCounter = 0;
     let failCounter = 0;
     let uniqueCounter = uniqBy(arrayObjs, 'link').length;
@@ -15,11 +16,12 @@ module.exports = (arrayObjs) => {
         }
         totalCounter++
     })
-    const counter = {
+     counter = {
         Ok: okCounter,
         Broken: failCounter,
         Unique: uniqueCounter,
         Total: totalCounter,
     }
+       // arrayCounter.push(counter)
     return counter
 }
