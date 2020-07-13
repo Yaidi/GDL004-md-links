@@ -4,12 +4,12 @@ module.exports = obj = (content, path) => {
         if (!content) {
             return reject(errL);
         }
-        const regexLinksAndText = /\[(.*)\](\(https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&\/\/=]*)\))/gm;
+        const regexLinksAndText = /\[(.*)\]\((https?:\/\/(www\.)?)(.*)\)/gm;
         let linksArray = content.match(regexLinksAndText);
         let obj = {};
         let array = [];
         const regexText = /\[(.*?)\]/gm;
-        const regexLinks = /\((.*?)\)/gm;
+        const regexLinks = /\((https?:\/\/(www\.)?)(.*)\)/gm;
 
         for (let i = 0; i < linksArray.length; i++) {
             obj = {
